@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="NativeBass">
     <CLASSES>
-      <root url="jar://F:/Java libs/NativeBass-1.1.2/NativeBass-1.1.2/lib/NativeBass.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/NativeBass.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
