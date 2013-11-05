@@ -1,0 +1,26 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" name="SpecBoard">
+    <output-path>$PROJECT_DIR$/out/artifacts/SpecBoard</output-path>
+    <properties id="javafx-properties">
+      <options>
+        <option name="appClass" value="specboard.Main" />
+        <option name="description" value="Sound board for improvisation theatre." />
+        <option name="height" value="768" />
+        <option name="htmlParamFile" value="" />
+        <option name="paramFile" value="" />
+        <option name="title" value="SpecBoard" />
+        <option name="vendor" value="Jaakko Rinta-Filppula" />
+        <option name="width" value="1024" />
+      </options>
+    </properties>
+    <root id="root">
+      <element id="archive" name="SpecBoard.jar">
+        <element id="module-output" name="SpecBoard" />
+        <element id="file-copy" path="F:/Java libs/NativeBass-1.1.2/NativeBass-1.1.2/lib/NativeBass.jar" />
+      </element>
+      <element id="directory" name="lib">
+        <element id="dir-copy" path="$PROJECT_DIR$/lib" />
+      </element>
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,21 @@
+.sound-button {
+    -fx-background-color: gray;
+    -fx-background-radius: 0;
+
+    -fx-font-family: sans-serif;
+    -fx-font-size: 24pt;
+    -fx-font-weight: bold;
+}
+
+.sound-button:hover {
+    -fx-background-color: darkgray;
+}
+
+.sound-button:armed {
+    -fx-background-color: seagreen;
+}
+
+.sound-button:focused {
+    -fx-border-color: black;
+    -fx-border-width: 2px;
+}
