@@ -1,3 +1,21 @@
+.menu-bar {
+    -fx-background-color: #222222;
+}
+
+.menu-item .label {
+    -fx-text-fill: white;
+}
+
+.menu-item:focused {
+    -fx-background-color: gray;
+}
+
+.context-menu {
+    -fx-background-color: #222222;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+}
+
 .sound-button {
     -fx-background-color: gray;
     -fx-background-radius: 0;

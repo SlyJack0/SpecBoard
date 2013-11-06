@@ -18,6 +18,8 @@ public class SoundButton extends Button {
 
     private Sound targetSound;
 
+    private SoundButtonMenu contextMenu;
+
     public SoundButton(String s) {
         super(s);
 
@@ -41,11 +43,29 @@ public class SoundButton extends Button {
         this.textProperty().bindBidirectional(targetSound.nameProperty());
     }
 
+    private void createContextMenu() {
+        contextMenu = new SoundButtonMenu(targetSound);
+
+        setContextMenu(contextMenu);
+    }
+
     public boolean loadSound(String filename) {
-        return targetSound.loadFile(filename);
+        if (targetSound.loadFile(filename)) {
+            if (contextMenu == null) {
+                createContextMenu();
+            }
+
+            return true;
+        }
+
+        return false;
     }
 
     public Sound getTargetSound() {
         return targetSound;
+    }
+
+    public void removeSound() {
+        targetSound = new Sound();
     }
 }
