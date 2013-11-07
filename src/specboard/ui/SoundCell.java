@@ -1,29 +1,30 @@
 package specboard.ui;
 
-import javafx.beans.binding.Bindings;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.TransferMode;
-import jouvieje.bass.Bass;
-import jouvieje.bass.structures.HSTREAM;
+import javafx.scene.layout.AnchorPane;
 import specboard.domain.Sound;
 import specboard.event.FileDropHandler;
-import specboard.event.SoundButtonHandler;
+import specboard.event.SoundCellHandler;
 
 /**
  * @author Jaakko
  */
-public class SoundButton extends Button {
+public class SoundCell extends AnchorPane {
 
     private Sound targetSound;
 
-    private SoundButtonMenu contextMenu;
+    private Button button;
+    private SoundCellMenu contextMenu;
 
-    public SoundButton(String s) {
-        super(s);
+    public SoundCell(String s) {
+        targetSound = new Sound();
 
-        this.setOnAction(new SoundButtonHandler(this));
+        button = new Button(s);
+        button.setOnAction(new SoundCellHandler(this));
+
         this.setOnDragDropped(new FileDropHandler(this));
         this.setOnDragOver(new EventHandler<DragEvent>() {
             @Override
@@ -36,17 +37,21 @@ public class SoundButton extends Button {
             }
         });
 
-        this.getStyleClass().add("sound-button");
+        button.getStyleClass().add("sound-button");
+        button.textProperty().bindBidirectional(targetSound.nameProperty());
 
-        this.targetSound = new Sound();
+        getChildren().add(button);
 
-        this.textProperty().bindBidirectional(targetSound.nameProperty());
+        setTopAnchor(button, 0.0);
+        setBottomAnchor(button, 0.0);
+        setLeftAnchor(button, 0.0);
+        setRightAnchor(button, 0.0);
     }
 
     private void createContextMenu() {
-        contextMenu = new SoundButtonMenu(targetSound);
+        contextMenu = new SoundCellMenu(targetSound);
 
-        setContextMenu(contextMenu);
+        button.setContextMenu(contextMenu);
     }
 
     public boolean loadSound(String filename) {

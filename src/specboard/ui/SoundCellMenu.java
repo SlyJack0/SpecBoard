@@ -8,14 +8,14 @@ import specboard.domain.Sound;
 /**
  * @author Jaakko
  */
-public class SoundButtonMenu extends ContextMenu {
+public class SoundCellMenu extends ContextMenu {
 
     private Sound targetSound;
 
     private MenuItem renameItem, deleteItem;
     private CheckMenuItem loopItem;
 
-    public SoundButtonMenu(Sound targetSound) {
+    public SoundCellMenu(Sound targetSound) {
         this.targetSound = targetSound;
 
         renameItem = new MenuItem("Rename sound...");

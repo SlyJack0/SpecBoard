@@ -1,6 +1,5 @@
 package specboard.ui;
 
-import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
 import javafx.scene.layout.*;
 
@@ -16,7 +15,7 @@ public class BoardPage extends Tab {
     private String name;
     private GridPane grid;
 
-    private List<SoundButton> buttons;
+    private List<SoundCell> cells;
 
     public BoardPage(String name, int rows, int cols) {
         super(name);
@@ -26,25 +25,17 @@ public class BoardPage extends Tab {
 
         this.name = name;
 
-        //create grid and buttons
+        //create grid
         this.grid = new GridPane();
 
-        this.buttons = new ArrayList<>();
+        this.cells = new ArrayList<>();
         for (int r = 0; r < rows; r++) {
             for (int c = 0; c < cols; c++) {
-                SoundButton newButton = new SoundButton("");
+                SoundCell newCell = new SoundCell("");
 
-                this.buttons.add(newButton);
+                this.cells.add(newCell);
 
-                AnchorPane tmpPane = new AnchorPane();
-
-                tmpPane.getChildren().add(newButton);
-                AnchorPane.setTopAnchor(newButton, 0.0);
-                AnchorPane.setBottomAnchor(newButton, 0.0);
-                AnchorPane.setLeftAnchor(newButton, 0.0);
-                AnchorPane.setRightAnchor(newButton, 0.0);
-
-                this.grid.add(tmpPane, c, r);
+                this.grid.add(newCell, c, r);
             }
         }
 
