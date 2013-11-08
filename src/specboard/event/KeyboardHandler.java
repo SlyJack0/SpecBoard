@@ -4,6 +4,7 @@ import javafx.event.EventHandler;
 import javafx.scene.control.TabPane;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import specboard.domain.CommandManager;
 import specboard.ui.BoardPage;
 
 /**
@@ -24,6 +25,15 @@ public class KeyboardHandler implements EventHandler<KeyEvent> {
         if (keyEvent.isControlDown() && code.getName().equals("P")) {
             BoardPage bp = new BoardPage("New page", 4, 4);
             pagesPane.getTabs().add(bp);
+        } else {
+            CommandManager commandManager = CommandManager.getInstance();
+            if (code.getName().equals("Enter") && !commandManager.getCommandString().isEmpty()) {
+                commandManager.runCommand();
+            } else {
+                commandManager.appendString(keyEvent.getText());
+            }
         }
+
+
     }
 }
