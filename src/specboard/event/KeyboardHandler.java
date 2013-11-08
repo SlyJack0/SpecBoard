@@ -2,6 +2,7 @@ package specboard.event;
 
 import javafx.event.EventHandler;
 import javafx.scene.control.TabPane;
+import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import specboard.domain.CommandManager;
@@ -13,9 +14,11 @@ import specboard.ui.BoardPage;
 public class KeyboardHandler implements EventHandler<KeyEvent> {
 
     private TabPane pagesPane;
+    private TextField commandLine;
 
-    public KeyboardHandler(TabPane pagesPane) {
+    public KeyboardHandler(TabPane pagesPane, TextField commandLine) {
         this.pagesPane = pagesPane;
+        this.commandLine = commandLine;
     }
 
     @Override
@@ -25,13 +28,8 @@ public class KeyboardHandler implements EventHandler<KeyEvent> {
         if (keyEvent.isControlDown() && code.getName().equals("P")) {
             BoardPage bp = new BoardPage("New page", 4, 4);
             pagesPane.getTabs().add(bp);
-        } else {
-            CommandManager commandManager = CommandManager.getInstance();
-            if (code.getName().equals("Enter") && !commandManager.getCommandString().isEmpty()) {
-                commandManager.runCommand();
-            } else {
-                commandManager.appendString(keyEvent.getText());
-            }
+        } else if (keyEvent.isControlDown() && code.getName().equals("C")) {
+            commandLine.requestFocus();
         }
 
 

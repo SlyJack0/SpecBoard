@@ -20,6 +20,6 @@
       </menus>
     </MenuBar>
     <TabPane fx:id="pagesPane" prefHeight="714.0" prefWidth="1024.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="24.0" />
-    <TextField id="status-bar" fx:id="statusBar" editable="true" prefHeight="30.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+    <TextField id="command-line" fx:id="commandLine" editable="true" prefHeight="30.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
   </children>
 </AnchorPane>

@@ -21,21 +21,26 @@ public class MainController implements Initializable {
     private TabPane pagesPane;
 
     @FXML
-    private TextField statusBar;
+    private TextField commandLine;
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        mainPane.setOnKeyPressed(new KeyboardHandler(pagesPane));
+        mainPane.setOnKeyPressed(new KeyboardHandler(pagesPane, commandLine));
 
-        statusBar.textProperty().bindBidirectional(CommandManager.getInstance().commandStringProperty());
-        statusBar.setOnAction(new EventHandler<ActionEvent>() {
+        commandLine.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                CommandManager.getInstance().runCommand();
+                boolean success = CommandManager.getInstance().runCommand(commandLine.getText());
+
+                if (success) {
+                    commandLine.setText("");
+                    pagesPane.requestFocus();
+                }
             }
         });
-        statusBar.setFocusTraversable(false);
+        commandLine.setFocusTraversable(false);
+
     }
 
 }
