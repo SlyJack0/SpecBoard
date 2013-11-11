@@ -25,11 +25,15 @@ public class KeyboardHandler implements EventHandler<KeyEvent> {
     public void handle(KeyEvent keyEvent) {
         KeyCode code = keyEvent.getCode();
 
-        if (keyEvent.isControlDown() && code.getName().equals("P")) {
-            BoardPage bp = new BoardPage("New page", 4, 4);
-            pagesPane.getTabs().add(bp);
-        } else if (keyEvent.isControlDown() && code.getName().equals("C")) {
-            commandLine.requestFocus();
+        if (keyEvent.isControlDown()) {
+            if (code.getName().equals("P")) {
+                BoardPage bp = new BoardPage("New page", 4, 4);
+                pagesPane.getTabs().add(bp);
+            } else if (code.getName().equals("C")) {
+                commandLine.requestFocus();
+            } else if (code.ordinal() >= 25 && code.ordinal() <= 33) {
+                pagesPane.getSelectionModel().select(code.ordinal() - 25);
+            }
         }
 
 
