@@ -73,6 +73,14 @@ public class Sound {
         this.loop.set(loop);
     }
 
+    public void toggleLoop() {
+        this.loop.set(!loop.get());
+    }
+
+    public boolean isLoaded() {
+        return stream != null;
+    }
+
     public void start() {
         if (stream != null) {
             Bass.BASS_ChannelPlay(stream.asInt(), true);

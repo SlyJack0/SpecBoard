@@ -70,7 +70,7 @@ public class BoardPage extends Tab {
         setContent(grid);
     }
 
-    public SoundCell getSoundCell(int col, int row) {
+    public SoundCell getSoundCell(int row, int col) {
         return cells[row][col];
     }
 

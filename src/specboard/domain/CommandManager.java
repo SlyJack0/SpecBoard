@@ -6,6 +6,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.control.TabPane;
 import specboard.ui.BoardPage;
+import specboard.ui.SoundCell;
 
 import java.util.Arrays;
 import java.util.regex.Matcher;
@@ -48,6 +49,16 @@ public class CommandManager {
                     cols = Integer.parseInt(args[1]);
 
                 currentPage.setGridSize(rows, cols);
+            } else if (action.equals("l")) {
+                String[] args = argString.split(",");
+
+                int row = Integer.parseInt(args[0]),
+                    col = Integer.parseInt(args[1]);
+
+                SoundCell soundCell = currentPage.getSoundCell(row, col);
+                if (soundCell != null && soundCell.getTargetSound().isLoaded()) {
+                    soundCell.getTargetSound().toggleLoop();
+                }
             }
 
             return true;
