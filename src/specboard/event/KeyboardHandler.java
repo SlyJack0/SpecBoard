@@ -25,7 +25,7 @@ public class KeyboardHandler implements EventHandler<KeyEvent> {
     public void handle(KeyEvent keyEvent) {
         KeyCode code = keyEvent.getCode();
 
-        if (keyEvent.isControlDown()) {
+        if (keyEvent.isShortcutDown()) {
             if (code.getName().equals("P")) {
                 BoardPage bp = new BoardPage("New page", 4, 4);
                 pagesPane.getTabs().add(bp);
