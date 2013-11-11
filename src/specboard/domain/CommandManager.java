@@ -38,7 +38,6 @@ public class CommandManager {
         if (matcher.find()) {
             BoardPage currentPage = (BoardPage) pagesPane.getSelectionModel().getSelectedItem();
 
-
             String action = matcher.group(1);
             String argString = matcher.group(2);
 
