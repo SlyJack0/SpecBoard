@@ -17,7 +17,7 @@ import java.util.regex.Pattern;
  */
 public class CommandManager {
     private static CommandManager ourInstance = new CommandManager();
-    private static Pattern commandPattern = Pattern.compile("([a-zA-Z]) *([\\w,]+)?");
+    private static Pattern commandPattern = Pattern.compile("([a-zA-Z]) *(.+)?");
 
     private TabPane pagesPane;
 
@@ -45,25 +45,32 @@ public class CommandManager {
             if (action.equals("g")) {
                 String[] args = argString.split(",");
 
-                int rows = Integer.parseInt(args[0]),
-                    cols = Integer.parseInt(args[1]);
+                int rows = parseInt(args[0]),
+                    cols = parseInt(args[1]);
 
                 currentPage.setGridSize(rows, cols);
             } else if (action.equals("l")) {
                 String[] args = argString.split(",");
 
-                int row = Integer.parseInt(args[0]),
-                    col = Integer.parseInt(args[1]);
+                int row = parseInt(args[0]),
+                    col = parseInt(args[1]);
 
                 SoundCell soundCell = currentPage.getSoundCell(row, col);
                 if (soundCell != null && soundCell.getTargetSound().isLoaded()) {
                     soundCell.getTargetSound().toggleLoop();
                 }
+            } else if (action.equals("p")) {
+                BoardPage bp = new BoardPage(argString, 4, 4);
+                pagesPane.getTabs().add(bp);
             }
 
             return true;
         }
 
         return false;
+    }
+
+    private int parseInt(String s) {
+        return Integer.parseInt(s.trim());
     }
 }
