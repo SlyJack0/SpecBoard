@@ -1,5 +1,7 @@
 package specboard;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -9,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import specboard.domain.CommandManager;
 import specboard.event.KeyboardHandler;
+import specboard.ui.BoardPage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -36,6 +39,15 @@ public class MainController implements Initializable {
                 if (success) {
                     commandLine.setText("");
                     pagesPane.requestFocus();
+                }
+            }
+        });
+
+        commandLine.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean aBoolean2) {
+                if (aBoolean2) {
+                    CommandManager.getInstance().setCurrentPage((BoardPage) pagesPane.getSelectionModel().getSelectedItem());
                 }
             }
         });
