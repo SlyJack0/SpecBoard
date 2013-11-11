@@ -7,6 +7,7 @@ import javafx.beans.property.StringProperty;
 import javafx.scene.control.TabPane;
 import specboard.ui.BoardPage;
 
+import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -15,7 +16,7 @@ import java.util.regex.Pattern;
  */
 public class CommandManager {
     private static CommandManager ourInstance = new CommandManager();
-    private static Pattern commandPattern = Pattern.compile("(\\d+) *, *(\\d+) *([a-zA-z]) *(\\w+)?");
+    private static Pattern commandPattern = Pattern.compile("([a-zA-Z]) *([\\w,]+)?");
 
     private TabPane pagesPane;
 
@@ -36,13 +37,17 @@ public class CommandManager {
         if (matcher.find()) {
             BoardPage currentPage = (BoardPage) pagesPane.getSelectionModel().getSelectedItem();
 
-            int col = Integer.parseInt(matcher.group(1)),
-                row = Integer.parseInt(matcher.group(2));
 
-            String action = matcher.group(3);
+            String action = matcher.group(1);
+            String argString = matcher.group(2);
 
             if (action.equals("g")) {
-                currentPage.setGridSize(row, col);
+                String[] args = argString.split(",");
+
+                int rows = Integer.parseInt(args[0]),
+                    cols = Integer.parseInt(args[1]);
+
+                currentPage.setGridSize(rows, cols);
             }
 
             return true;
