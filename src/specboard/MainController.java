@@ -43,14 +43,7 @@ public class MainController implements Initializable {
             }
         });
 
-        commandLine.focusedProperty().addListener(new ChangeListener<Boolean>() {
-            @Override
-            public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean aBoolean2) {
-                if (aBoolean2) {
-                    CommandManager.getInstance().setCurrentPage((BoardPage) pagesPane.getSelectionModel().getSelectedItem());
-                }
-            }
-        });
+        CommandManager.getInstance().setPagesPane(pagesPane);
         commandLine.setFocusTraversable(false);
 
     }
